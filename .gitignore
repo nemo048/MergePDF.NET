@@ -1,0 +1,14 @@
+bin/
+obj/
+/packages/
+/.idea/.idea.DatabaseAccountingWebApi/.idea/contentModel.xml
+/.idea/.idea.DatabaseAccountingWebApi/.idea/encodings.xml
+/.idea/.idea.DatabaseAccountingWebApi/.idea/indexLayout.xml
+/.idea/.idea.DatabaseAccountingWebApi/.idea/misc.xml
+/.idea/.idea.DatabaseAccountingWebApi/.idea/modules.xml
+/.idea/.idea.DatabaseAccountingWebApi/.idea/projectSettingsUpdater.xml
+/.idea/.idea.DatabaseAccountingWebApi/riderModule.iml
+/.idea/.idea.DatabaseAccountingWebApi/.idea/vcs.xml
+/.idea/
+/.vs
+*.user
