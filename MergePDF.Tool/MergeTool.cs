@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using MergePDF.Tool.Extensions;
@@ -16,13 +17,37 @@ namespace MergePDF.Tool
             {
                 outputDocument.Open();
 
-                foreach (string file in mergeOptions.Files)
+                if (ShouldMergeFromSingleFiles(mergeOptions))
                 {
-                    pdfCopyProvider.AddFile(file);
+                    foreach (string file in mergeOptions.Files)
+                    {
+                        pdfCopyProvider.AddFile(file);
+                    }
                 }
-                
+
+                if (ShouldMergeFromDirectories(mergeOptions))
+                {
+                    foreach (string directory in mergeOptions.Directories)
+                    {
+                        foreach (string file in Directory.EnumerateFiles(directory))
+                        {
+                            pdfCopyProvider.AddFile(file);
+                        }
+                    }
+                }
+
                 outputDocument.Close();  
             }
+        }
+
+        private static bool ShouldMergeFromDirectories(IMergeOptions mergeOptions)
+        {
+            return mergeOptions.Directories is not null && mergeOptions.Directories.Any();
+        }
+
+        private static bool ShouldMergeFromSingleFiles(IMergeOptions mergeOptions)
+        {
+            return mergeOptions.Files is not null && mergeOptions.Files.Any();
         }
     }
 }
